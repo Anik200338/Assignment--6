@@ -8,10 +8,106 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <title>Document</title>
+  <style>
+    .tooltip {
+      position: relative;
+      display: inline-block;
+    }
+
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 120px;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+      position: absolute;
+      z-index: 1;
+      bottom: 150%;
+      left: 50%;
+      margin-left: -60px;
+    }
+
+    .tooltip .tooltiptext::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: black transparent transparent transparent;
+    }
+
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+    }
+  </style>
 </head>
 
-<body class="">
+<body>
+  <header>
+    <section class="p-4 lg:container mx-auto mt-14">
+      <div class="navbar bg-base-100">
+        <div class="navbar-start">
+          <div class="dropdown">
+            <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+              </svg>
+              <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                <li>
+                  <div class="tooltip m-1"><i class="fa-solid fa-house border-2 border-solid p-2 rounded-full"></i>
+                    <span class="tooltiptext">Home</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="tooltip m-1"><i class="fa-solid fa-pen border-2 border-solid p-2 rounded-full"></i>
+                    <span class="tooltiptext">Write</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="tooltip m-1"><i class="fa-solid fa-user-plus border-2 border-solid p-2 rounded-full"></i>
+                    <span class="tooltiptext">Write</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="tooltip m-1"><i class="fa-solid fa-flag border-2 border-solid p-2 rounded-full"></i>
+                    <span class="tooltiptext">Write</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <a class="btn btn-ghost text-4xl font-extrabold">OreTro</a>
+        </div>
+        <div class="navbar-end">
+          <div class="hidden lg:flex">
+            <div class="tooltip m-1"><i class="fa-solid fa-house border-2 border-solid p-2 rounded-full"></i>
+              <span class="tooltiptext">Home</span>
+            </div>
+            <div class="tooltip m-1"><i class="fa-solid fa-pen border-2 border-solid p-2 rounded-full"></i>
+              <span class="tooltiptext">Write</span>
+            </div>
+            <div class="tooltip m-1"><i class="fa-solid fa-user-plus border-2 border-solid p-2 rounded-full"></i>
+              <span class="tooltiptext">Add</span>
+            </div>
+            <div class="tooltip m-1 "><i class="fa-solid fa-flag border-2 border-solid p-2 rounded-full"></i>
+              <span class="tooltiptext">Tooltip</span>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-primary ml-2 rounded-full font-bold text-lg w-32">sign in</button>
+      </div>
+      </div>
+    </section>
+  </header>
+  <main class="p-4 lg:container mx-auto mt-14">
 
+
+  </main>
 
 
   <script src="index.js"></script>

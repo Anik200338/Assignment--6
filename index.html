@@ -43,12 +43,60 @@
     .tooltip:hover .tooltiptext {
       visibility: visible;
     }
+
+    .input-container {
+      position: relative;
+      max-width: 60%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .custom-input {
+      padding: 15px;
+      font-size: 18px;
+      border: 1px solid #ccc;
+      border-radius: 30px;
+      width: 100%;
+      /* Make the input field full width */
+      box-sizing: border-box;
+      /* Include padding and border in the width calculation */
+    }
+
+    .custom-button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      padding: 0px 15px;
+      margin: 5px;
+      background-color: rgb(121, 125, 252);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    /* Media query for mobile responsiveness */
+    @media (max-width: 600px) {
+      .input-container {
+        max-width: 100%;
+
+      }
+
+      .custom-input,
+      .custom-button {
+        /* Adjust padding for smaller screens */
+        font-size: 10px;
+        /* Adjust font size for smaller screens */
+      }
+    }
   </style>
 </head>
 
 <body>
-  <header>
-    <section class="p-4 lg:container mx-auto mt-14">
+  <header class="p-4 container mx-auto mt-14">
+    <section>
       <div class="navbar bg-base-100">
         <div class="navbar-start">
           <div class="dropdown">
@@ -105,7 +153,28 @@
     </section>
   </header>
   <main class="p-4 lg:container mx-auto mt-14">
+    <!-- section-1 -->
+    <section class="p-4 lg:container mx-auto">
+      <div class=" p-10 lg:flex justify-between bg-blue-950  rounded-3xl bg-no-repeat bg-bottom bg-cover lg:p-20 "
+        style="background-image: url(./images/banner.png);">
+        <div class="">
+          <div>
+            <h1 class="text-3xl font-bold lg:text-8xl text-white pb-9">Welcome to the <br> ReTro Forum</h1>
+            <p class="lg:text-2xl text-white pb-9">Share your favorite opinion and win and wp <br> forum coffee mug!</p>
+            <div class="input-container">
+              <input type="text" class="custom-input" id="myInput" placeholder="Search here anything">
+              <button class="custom-button" onclick="handleButtonClick()">Search</button>
+            </div>
 
+          </div>
+        </div>
+        <div class="pt-5">
+          <img src="./images/Frame 9.png" alt="">
+        </div>
+      </div>
+
+    </section>
+    <!-- section-2 -->
 
   </main>
 

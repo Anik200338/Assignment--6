@@ -96,7 +96,7 @@ const loadCategory2 = async searchText => {
                   <i class="fa-solid fa-clock"><span class="pl-3 ">${item.posted_time}</span></i>
                 </div>
                 <div class="">
-                  <button onclick="handleClick()"}><img src="./images/Vector.png" alt="" class="mt-5 mb-10"></button>
+                  <button><img src="./images/Vector.png" alt="" class="mt-5 mb-10"></button>
                 </div>
               </div>
             </div>
@@ -216,7 +216,6 @@ if (isPageReloaded) {
 const isPageReloaded2 = sessionStorage.getItem('pageReloaded');
 
 window.addEventListener('beforeunload', function () {
-  // Set the flag for page reload
   sessionStorage.setItem('pageReloaded', 'true');
 });
 
@@ -227,6 +226,6 @@ if (isPageReloaded2) {
     sessionStorage.removeItem('pageReloaded');
   }, 2000);
 } else {
-  toggleLoadingSpinner(false);
+  toggleLoadingSpinner2(false);
   latestPost();
 }

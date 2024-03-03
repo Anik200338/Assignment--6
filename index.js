@@ -1,18 +1,22 @@
+// all data load
 const loadCategory = async () => {
-  const response = await fetch(
-    'https://openapi.programming-hero.com/api/retro-forum/posts'
-  );
-  const data = await response.json();
-  const categoryContainer = document.getElementById('category-bar-container');
-  data.posts.forEach(item => {
-    // console.log(item);
-    let verifiedBadge = 'badge-secondary';
-    if (item.isActive) {
-      verifiedBadge = ` bg-green-500
+  toggleLoadingSpinner(true);
+  try {
+    const response = await fetch(
+      'https://openapi.programming-hero.com/api/retro-forum/posts'
+    );
+    const data = await response.json();
+    const categoryContainer = document.getElementById('category-bar-container');
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    data.posts.forEach(item => {
+      // console.log(item);
+      let verifiedBadge = 'badge-secondary';
+      if (item.isActive) {
+        verifiedBadge = ` bg-green-500
        `;
-    }
-    const div = document.createElement('div');
-    div.innerHTML = `
+      }
+      const div = document.createElement('div');
+      div.innerHTML = `
     <div class="lg:flex   gap-7 bg-orange-200 p-5 lg:p-10 rounded-2xl   mb-10">
             <div class="indicator">
               <span class="indicator-item badge  ${verifiedBadge}"></span>
@@ -41,26 +45,35 @@ const loadCategory = async () => {
             </div>
           </div>
     `;
-    categoryContainer.appendChild(div);
-  });
-  toggleLoadingSpinner(false);
+      categoryContainer.appendChild(div);
+    });
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  } finally {
+    toggleLoadingSpinner(false);
+  }
 };
+// search data load
+
 const loadCategory2 = async searchText => {
-  const response = await fetch(
-    `https://openapi.programming-hero.com/api/retro-forum/posts?category=${searchText}`
-  );
-  const data = await response.json();
-  const categoryContainer = document.getElementById('category-bar-container');
-  categoryContainer.textContent = '';
-  data.posts.forEach(item => {
-    console.log(item);
-    let verifiedBadge = 'badge-secondary';
-    if (item.isActive) {
-      verifiedBadge = ` bg-green-500
+  toggleLoadingSpinner(true);
+  try {
+    const response = await fetch(
+      `https://openapi.programming-hero.com/api/retro-forum/posts?category=${searchText}`
+    );
+    const data = await response.json();
+    const categoryContainer = document.getElementById('category-bar-container');
+    categoryContainer.textContent = '';
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    data.posts.forEach(item => {
+      console.log(item);
+      let verifiedBadge = 'badge-secondary';
+      if (item.isActive) {
+        verifiedBadge = ` bg-green-500
        `;
-    }
-    const div = document.createElement('div');
-    div.innerHTML = `
+      }
+      const div = document.createElement('div');
+      div.innerHTML = `
     <div class="lg:flex   gap-7 bg-orange-200 p-5 lg:p-10 rounded-2xl   mb-10">
             <div class="indicator">
               <span class="indicator-item badge  ${verifiedBadge}"></span>
@@ -89,30 +102,37 @@ const loadCategory2 = async searchText => {
             </div>
           </div>
     `;
-    categoryContainer.appendChild(div);
-  });
-  toggleLoadingSpinner(false);
+      categoryContainer.appendChild(div);
+    });
+  } catch (error) {
+    console.error('Error fetching category data:', error);
+  } finally {
+    toggleLoadingSpinner(false);
+  }
 };
 
+// onclick search function
 const handleButtonClick = () => {
-  toggleLoadingSpinner(true);
   const searchField = document.getElementById('myInput');
   const searchText = searchField.value;
   loadCategory2(searchText);
 };
 
 // latest post
+
 const latestPost = async () => {
-  const response = await fetch(
-    'https://openapi.programming-hero.com/api/retro-forum/latest-posts'
-  );
-  const data = await response.json();
-  console.log(data);
-  const categoryContainer1 = document.getElementById('latestCard');
-  data.forEach(item => {
-    console.log(item);
-    const div = document.createElement('div');
-    div.innerHTML = `
+  toggleLoadingSpinner2(true);
+  try {
+    const response = await fetch(
+      'https://openapi.programming-hero.com/api/retro-forum/latest-posts'
+    );
+    const data = await response.json();
+    const categoryContainer1 = document.getElementById('latestCard');
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    data.forEach(item => {
+      console.log(item);
+      const div = document.createElement('div');
+      div.innerHTML = `
     <div class="card lg:w-96 h-[100%] bg-base-100 shadow-xl p-10 border-2 border-solid">
           <figure><img src="${item.cover_image}" alt="Shoes" />
           </figure>
@@ -141,74 +161,72 @@ const latestPost = async () => {
           </div>
         </div>
     `;
-    categoryContainer1.appendChild(div);
-  });
-  toggleLoadingSpinner2(false);
+      categoryContainer1.appendChild(div);
+    });
+  } catch (error) {
+    console.error('Error fetching latest posts:', error);
+  } finally {
+    toggleLoadingSpinner2(false); // Hide loading spinner for latest post
+  }
 };
-
-loadCategory();
-latestPost();
+//  spinner delay show 2 sec for latestPost and loadCategory function
 
 const toggleLoadingSpinner = isLoading => {
   const loadingSpinner = document.getElementById('loading-spinner');
   if (isLoading) {
     loadingSpinner.classList.remove('hidden');
   } else {
-    setTimeout(() => {
-      if (loadingSpinner) {
-        loadingSpinner.classList.add('hidden');
-      }
-    }, 2000);
+    loadingSpinner.classList.add('hidden');
   }
 };
+
+// Call loadCategory to fetch data
+
 const toggleLoadingSpinner2 = isLoading => {
   const loadingSpinner = document.getElementById('loading-spinner2');
   if (isLoading) {
     loadingSpinner.classList.remove('hidden');
   } else {
-    setTimeout(() => {
-      if (loadingSpinner) {
-        loadingSpinner.classList.add('hidden');
-      }
-    }, 2000);
+    loadingSpinner.classList.add('hidden');
   }
 };
-// Check if the page is reloaded
+
 const isPageReloaded = sessionStorage.getItem('pageReloaded');
 
 // Add event listener for beforeunload
+
 window.addEventListener('beforeunload', function () {
-  // Set the flag for page reload
   sessionStorage.setItem('pageReloaded', 'true');
 });
 
-// Call toggleLoadingSpinner based on page reload
 if (isPageReloaded) {
-  toggleLoadingSpinner(true); // Show loading spinner
+  // Show loading spinner after a 2-second delay
+
+  toggleLoadingSpinner(true);
+  // Load data after another 2-second delay
+  setTimeout(() => {
+    loadCategory();
+    sessionStorage.removeItem('pageReloaded');
+  }, 2000);
 } else {
-  toggleLoadingSpinner(true); // Hide loading spinner
-  // Remove the flag for subsequent visits
-  sessionStorage.removeItem('pageReloaded');
+  toggleLoadingSpinner(false);
+  loadCategory();
 }
 
-// Rest of your code...
-
-// Check if the page is reloaded
 const isPageReloaded2 = sessionStorage.getItem('pageReloaded');
 
-// Add event listener for beforeunload
 window.addEventListener('beforeunload', function () {
   // Set the flag for page reload
   sessionStorage.setItem('pageReloaded', 'true');
 });
 
-// Call toggleLoadingSpinner based on page reload
-if (isPageReloaded) {
-  toggleLoadingSpinner2(true); // Show loading spinner for reload
+if (isPageReloaded2) {
+  toggleLoadingSpinner2(true);
+  setTimeout(() => {
+    latestPost();
+    sessionStorage.removeItem('pageReloaded');
+  }, 2000);
 } else {
-  toggleLoadingSpinner2(true); // Show loading spinner for initial load
-  // Remove the flag for subsequent visits
-  sessionStorage.removeItem('pageReloaded');
+  toggleLoadingSpinner(false);
+  latestPost();
 }
-
-// Rest of your code...

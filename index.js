@@ -10,7 +10,7 @@ const loadCategory = async () => {
     await new Promise(resolve => setTimeout(resolve, 2000));
     data.posts.forEach(item => {
       // console.log(item);
-      let verifiedBadge = 'badge-secondary';
+      let verifiedBadge = `bg-red-500`;
       if (item.isActive) {
         verifiedBadge = ` bg-green-500
        `;
@@ -53,8 +53,8 @@ const loadCategory = async () => {
                     "'",
                     "\\'"
                   )}', '${item.view_count}')">
-  <img src="./images/Vector.png" alt="" class="mt-5 mb-9">
-</button>
+                      <img src="./images/Vector.png" alt="" class="mt-5 mb-9">
+                      </button>
 
                 </div>
               </div>
@@ -84,7 +84,7 @@ const loadCategory2 = async searchText => {
     await new Promise(resolve => setTimeout(resolve, 2000));
     data.posts.forEach(item => {
       console.log(item);
-      let verifiedBadge = 'badge-secondary';
+      let verifiedBadge = `bg-red-500`;
       if (item.isActive) {
         verifiedBadge = ` bg-green-500
           `;

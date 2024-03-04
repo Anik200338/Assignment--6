@@ -147,7 +147,8 @@
             </div>
           </div>
         </div>
-        <button class="btn btn-primary bg-[#797DFC] ml-2 rounded-full font-bold text-lg w-32">sign in</button>
+        <button onclick="my_modal_5.showModal()"
+          class="btn btn-primary bg-[#797DFC] ml-2 rounded-full font-bold text-lg w-32">sign in</button>
       </div>
       </div>
     </section>
@@ -189,7 +190,6 @@
       </div>
     </section>
     <!-- section-3 -->
-
     <section class="p-4 lg:container mx-auto mt-20">
       <div class="text-center hidden" id="loading-spinner"><span class="loading loading-bars loading-lg w-20"></span>
       </div>
@@ -218,7 +218,7 @@
             run unit <br> tests and view the
             results directly
             within the app.</p>
-          <button class="btn btn-active  bg-[#797DFC]">Registered Now</button>
+          <button class="btn btn-active  bg-[#797DFC]" onclick="my_modal_4.showModal()">Registered Now</button>
         </div>
         <div>
           <img src="./images/joinforum.png" alt="">
@@ -268,6 +268,93 @@
     <div class="border-t-2 border-gray-300 mt-5 mb-10 w-3/4 mx-auto"> </div>
     <p class="text-center  pb-10">2017, All Rights Reserved.</p>
   </footer>
+  <!-- Open the modal using ID.showModal() method -->
+  <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box">
+      <h3 class="font-bold text-lg text-center">Sign Up</h3>
+      <p class="py-4 text-center">its only takes a minute</p>
+      <div class=" text-center">
+        <div class="pb-5">
+          <h1 class="pb-5">First Name</h1>
+          <input type="text" placeholder="First Name" class="input input-bordered input-primary w-full max-w-xs" />
+        </div>
+        <div class="pb-5">
+          <h1 class="pb-5">Last Name</h1>
+          <input type="text" placeholder="Last Name" class="input input-bordered input-primary w-full max-w-xs" />
+        </div>
+        <div class="pb-5">
+          <h1 class="pb-5">Email</h1>
+          <input type="text" placeholder="Email" class="input input-bordered input-primary w-full max-w-xs" />
+        </div>
+        <div class="pb-5">
+          <h1 class="pb-5">Password</h1>
+          <input type="text" placeholder="Password" class="input input-bordered input-primary w-full max-w-xs" />
+        </div>
+        <div class="text-center">
+          <button class="btn btn-primary" onclick="my_modal_3.showModal()">Submit</button>
+        </div>
+      </div>
+      <div class="modal-action">
+        <form method="dialog">
+          <!-- if there is a button in form, it will close the modal -->
+
+
+          <button class="btn text-center">Close</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+
+  <!-- You can open the modal using ID.showModal() method -->
+  <dialog id="my_modal_4" class="modal">
+    <div class="modal-box">
+      <h3 class="font-bold text-lg text-center">Registered Now</h3>
+      <p class="py-4 text-center">its only takes a minute</p>
+      <div class=" text-center">
+        <div class="pb-5">
+          <h1 class="pb-5">First Name</h1>
+          <input type="text" placeholder="First Name" class="input input-bordered input-primary w-full max-w-xs" />
+        </div>
+        <div class="pb-5">
+          <h1 class="pb-5">Last Name</h1>
+          <input type="text" placeholder="Last Name" class="input input-bordered input-primary w-full max-w-xs" />
+        </div>
+        <div class="pb-5">
+          <h1 class="pb-5">Email</h1>
+          <input type="text" placeholder="Email" class="input input-bordered input-primary w-full max-w-xs" />
+        </div>
+        <div class="pb-5">
+          <h1 class="pb-5">Password</h1>
+          <input type="text" placeholder="Password" class="input input-bordered input-primary w-full max-w-xs" />
+        </div>
+        <div class="text-center">
+          <button class="btn btn-primary" onclick="my_modal_3.showModal()">Submit</button>
+        </div>
+      </div>
+      <div class="modal-action">
+        <form method="dialog">
+          <!-- if there is a button in form, it will close the modal -->
+
+
+          <button class="btn text-center">Close</button>
+        </form>
+      </div>
+    </div>
+    </div>
+  </dialog>
+
+
+  <!-- You can open the modal using ID.showModal() method -->
+  <dialog id="my_modal_3" class="modal">
+    <div class="modal-box">
+      <form method="dialog">
+        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+      </form>
+      <h3 class="font-bold text-green-500 flex justify-center items-center text-5xl fo">successful</h3>
+    </div>
+  </dialog>
+
 
 
   <script src="index.js"></script>

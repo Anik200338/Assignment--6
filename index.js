@@ -1,4 +1,5 @@
 // all data load
+
 const loadCategory = async () => {
   toggleLoadingSpinner(true);
   try {
@@ -140,7 +141,7 @@ const loadCategory2 = async searchText => {
     toggleLoadingSpinner(false);
   }
 };
-// checkbox
+// add title and read count
 
 let readCount = 0;
 function handleShowDetail(title, viewCount) {
@@ -155,20 +156,15 @@ function handleShowDetail(title, viewCount) {
     <div><i class="fa-solid fa-eye"><span class="pl-3 " id="view2">${viewCount}</span></i></div>
   `;
 
-  // Append the new div to the "append" container
-  // Increment the read count
   readCount++;
 
-  // Update the read count in the HTML
   document.getElementById('readCount').textContent = readCount;
 
-  // Append the new div to the "append" container
   appendContainer.appendChild(newDiv);
 }
 
-// Initialize the read count to 0
-
 // onclick search function
+
 const handleButtonClick = () => {
   const searchField = document.getElementById('myInput');
   const searchText = searchField.value;
@@ -223,9 +219,10 @@ const latestPost = async () => {
   } catch (error) {
     console.error('Error fetching latest posts:', error);
   } finally {
-    toggleLoadingSpinner2(false); // Hide loading spinner for latest post
+    toggleLoadingSpinner2(false);
   }
 };
+
 //  spinner delay show 2 sec for latestPost and loadCategory function
 
 const toggleLoadingSpinner = isLoading => {
@@ -257,10 +254,8 @@ window.addEventListener('beforeunload', function () {
 });
 
 if (isPageReloaded) {
-  // Show loading spinner after a 2-second delay
-
   toggleLoadingSpinner(true);
-  // Load data after another 2-second delay
+
   setTimeout(() => {
     loadCategory();
     sessionStorage.removeItem('pageReloaded');

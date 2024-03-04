@@ -17,16 +17,20 @@ const loadCategory = async () => {
       }
       const div = document.createElement('div');
       div.innerHTML = `
-    <div class="lg:flex   gap-7 bg-orange-200 p-5 lg:p-10 rounded-2xl   mb-10">
+    <div class="lg:flex   gap-7 bg-[#12132D0D] p-5 lg:p-10 rounded-2xl   mb-10">
             <div class="indicator">
               <span class="indicator-item badge  ${verifiedBadge}"></span>
-              <div class="grid w-32 h-32 bg-base-300 place-items-center rounded-2xl"><img src="${item.image}" alt="" class="rounded-2xl"></div>
+              <div class="grid w-32 h-32 bg-base-300 place-items-center rounded-2xl"><img src="${
+                item.image
+              }" alt="" class="rounded-2xl"></div>
             </div>
             <div>
             <div>
             <div class="flex gap-7">
                 <p class="font-bold">${item.category}</p>
-                <p class="font-bold"> Author : <span>${item.author.name}</span></p>
+                <p class="font-bold"> Author : <span>${
+                  item.author.name
+                }</span></p>
               </div>
               <h1 class="text-3xl font-bold mt-5 " id="title">${item.title}</h1>
               <p class="mt-4 text-xl">${item.description}</p>
@@ -34,12 +38,24 @@ const loadCategory = async () => {
             </div>
               <div class="flex-row lg:flex  lg:gap-72 mt-5">
                 <div class="mt-5 ">
-                  <i class="fa-solid fa-message"><span class="pl-3 pr-8">${item.comment_count}</span></i>
-                  <i class="fa-solid fa-eye"><span class="pl-3 pr-8" id="view">${item.view_count}</span></i>
-                  <i class="fa-solid fa-clock"><span class="pl-3 ">${item.posted_time}</span></i>
+                  <i class="fa-solid fa-message"><span class="pl-3 pr-8">${
+                    item.comment_count
+                  }</span></i>
+                  <i class="fa-solid fa-eye"><span class="pl-3 pr-8" id="view">${
+                    item.view_count
+                  }</span></i>
+                  <i class="fa-solid fa-clock"><span class="pl-3 ">${
+                    item.posted_time
+                  }</span></i>
                 </div>
                 <div class="">
-                  <button id="userId"><img src="./images/Vector.png" alt="" class="mt-5 mb-10"></button>
+                  <button id="userId" onclick="handleShowDetail('${item.title.replace(
+                    "'",
+                    "\\'"
+                  )}', '${item.view_count}')">
+  <img src="./images/Vector.png" alt="" class="mt-5 mb-9">
+</button>
+
                 </div>
               </div>
             </div>
@@ -53,6 +69,7 @@ const loadCategory = async () => {
     toggleLoadingSpinner(false);
   }
 };
+
 // search data load
 
 const loadCategory2 = async searchText => {
@@ -70,38 +87,51 @@ const loadCategory2 = async searchText => {
       let verifiedBadge = 'badge-secondary';
       if (item.isActive) {
         verifiedBadge = ` bg-green-500
-       `;
+          `;
       }
       const div = document.createElement('div');
       div.innerHTML = `
-    <div class="lg:flex   gap-7 bg-orange-200 p-5 lg:p-10 rounded-2xl   mb-10">
-            <div class="indicator">
-              <span class="indicator-item badge  ${verifiedBadge}"></span>
-              <div class="grid w-32 h-32 bg-base-300 place-items-center rounded-2xl"><img src="${item.image}" alt="" class="rounded-2xl"></div>
-            </div>
-            <div>
-            <div>
-            <div class="flex gap-7">
-                <p class="font-bold">${item.category}</p>
-                <p class="font-bold"> Author : <span>${item.author.name}</span></p>
-              </div>
-              <h1 class="text-3xl font-bold mt-5 " id="title">${item.title}</h1>
-              <p class="mt-4 text-xl">${item.description}</p>
-              <hr class="border-dashed mt-5">
-            </div>
-              <div class="flex-row lg:flex  lg:gap-72 mt-5">
-                <div class="mt-5 ">
-                  <i class="fa-solid fa-message"><span class="pl-3 pr-8">${item.comment_count}</span></i>
-                  <i class="fa-solid fa-eye" id="view"><span class="pl-3 pr-8" >${item.view_count}</span></i>
-                  <i class="fa-solid fa-clock"><span class="pl-3 ">${item.posted_time}</span></i>
-                </div>
-                <div class="">
-                  <button><img src="./images/Vector.png" alt="" class="mt-5 mb-10"></button>
-                </div>
-              </div>
-            </div>
-          </div>
-    `;
+        <div class="lg:flex   gap-7 bg-[#12132D0D] p-5 lg:p-10 rounded-2xl   mb-10">
+        <div class="indicator">
+        <span class="indicator-item badge  ${verifiedBadge}"></span>
+        <div class="grid w-32 h-32 bg-base-300 place-items-center rounded-2xl"><img src="${
+          item.image
+        }" alt="" class="rounded-2xl"></div>
+        </div>
+        <div>
+        <div>
+        <div class="flex gap-7">
+        <p class="font-bold">${item.category}</p>
+        <p class="font-bold"> Author : <span>${item.author.name}</span></p>
+        </div>
+        <h1 class="text-3xl font-bold mt-5 " id="title">${item.title}</h1>
+        <p class="mt-4 text-xl">${item.description}</p>
+        <hr class="border-dashed mt-5">
+        </div>
+        <div class="flex-row lg:flex  lg:gap-72 mt-5">
+        <div class="mt-5 ">
+        <i class="fa-solid fa-message"><span class="pl-3 pr-8">${
+          item.comment_count
+        }</span></i>
+        <i class="fa-solid fa-eye" id="view"><span class="pl-3 pr-8" >${
+          item.view_count
+        }</span></i>
+        <i class="fa-solid fa-clock"><span class="pl-3 ">${
+          item.posted_time
+        }</span></i>
+        </div>
+        <div class="">
+        <button id="userId"" onclick="handleShowDetail('${item.title.replace(
+          "'",
+          "\\'"
+        )}', '${item.view_count}')">
+        <img src="./images/Vector.png" alt="" class=" mb-10">
+        </button>
+        </div>
+        </div>
+        </div>
+        </div>
+        `;
       categoryContainer.appendChild(div);
     });
   } catch (error) {
@@ -110,6 +140,33 @@ const loadCategory2 = async searchText => {
     toggleLoadingSpinner(false);
   }
 };
+// checkbox
+
+let readCount = 0;
+function handleShowDetail(title, viewCount) {
+  const appendContainer = document.getElementById('append');
+
+  const newDiv = document.createElement('div');
+  newDiv.className =
+    'flex justify-between gap-5 bg-[#12132D0D] rounded-2xl p-5 mb-5';
+
+  newDiv.innerHTML = `
+    <div><p class="font-bold">${title}</p></div>
+    <div><i class="fa-solid fa-eye"><span class="pl-3 " id="view2">${viewCount}</span></i></div>
+  `;
+
+  // Append the new div to the "append" container
+  // Increment the read count
+  readCount++;
+
+  // Update the read count in the HTML
+  document.getElementById('readCount').textContent = readCount;
+
+  // Append the new div to the "append" container
+  appendContainer.appendChild(newDiv);
+}
+
+// Initialize the read count to 0
 
 // onclick search function
 const handleButtonClick = () => {
